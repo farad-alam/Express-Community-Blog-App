@@ -1,0 +1,43 @@
+
+  <nav class="bg-white shadow-md w-full">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="/" class="text-xl font-bold text-primary">BrandLogo</a>
+
+     <!-- Menu (hidden by default) --> 
+      <div class="hidden md:flex space-x-4 items-center">
+        <a href="/auth/login" class="btn btn-ghost">Login</a>
+        <a href="/auth/signup" class="btn btn-outline btn-primary">Signup</a>
+        <a href="#" class="btn btn-error text-white">Logout</a>
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost">User Options</label>
+          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-52">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Hamburger Icon -->
+      <div class="md:hidden">
+        <button id="menu-toggle" class="btn btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-50 shadow-md">
+      <a href="/auth/login" class="block py-2 px-4 text-primary">Login</a>
+      <a href="/auth/signup" class="block py-2 px-4 text-primary">Signup</a>
+      <a href="#" class="block py-2 px-4 text-red-600">Logout</a>
+      <div class="border-t mt-2">
+        <a href="#" class="block py-2 px-4">Profile</a>
+        <a href="#" class="block py-2 px-4">Settings</a>
+        <a href="#" class="block py-2 px-4">Help</a>
+      </div>
+    </div>
+  </nav>
