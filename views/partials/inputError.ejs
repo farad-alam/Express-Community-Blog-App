@@ -1,0 +1,4 @@
+<% if (errors) { %> <% errors.forEach(error => { %> <% if (error.path ===
+type) { %>
+<p class="text-red-500 text-sm mt-1"><%= error.msg %></p>
+<% } %> <% }) %> <% } %>

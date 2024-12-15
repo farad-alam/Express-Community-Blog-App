@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const {validateSignUp} = require("../validators/userValidator")
+
 const {
     signUpGetControler,
     signUpPostControler,
@@ -9,7 +11,7 @@ const {
 } = require("../controlers/authControlers")
 
 router.get("/signup", signUpGetControler)
-router.post("/signup", signUpPostControler);
+router.post("/signup", validateSignUp, signUpPostControler);
 
 router.get("/login", logInGetControler);
 router.post("/login", logInPostControler);

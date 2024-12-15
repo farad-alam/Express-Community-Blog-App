@@ -1,24 +1,31 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const { validationResult } = require("express-validator");
 
 exports.signUpGetControler = async (req, res, next) => {
-    try {
-        const users = await User.find().select("-password")
-        console.log(users)
-        res.render("pages/auth/signup");
-    } catch (error) {
-        console.log(error)
-    }
+      return res.render("pages/auth/signup", {
+        errors: [],
+        oldInput: {},
+      });
   
 };
 
 exports.signUpPostControler = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    // console.log(errors.array())
+    return res.render("pages/auth/signup", {
+      errors: errors.array(),
+      oldInput: req.body
+    });
+  }
+
+
   const { username, email, password, confirmpassword } = req.body;
 
-  if (password !== confirmpassword) {
-    res.json({"passwordError":"Password Doesn't Match"})
-  }
+  // if (password !== confirmpassword) {
+  //   res.json({"passwordError":"Password Doesn't Match"})
+  // }
   try {
     // password hashing
     const hashPassword  = await bcrypt.hash(password, 11)
@@ -65,18 +72,6 @@ exports.logInPostControler = async (req, res, next) => {
         if (!isValidPassword) {
           res.status(400).json({message: "Invalid credintial"})
         }
-
-        // genarate jwt
-        // const token = jwt.sign(
-        //   {
-        //     userID: user._id,
-        //     email : user.email
-        //   },
-        //   process.env.JWT_SECRATE,
-        //   {
-        //     expiresIn : "1h"
-        //   }
-        // );
 
         // login success
         // res.status(200).json({message: "Successfully loggedin"})
