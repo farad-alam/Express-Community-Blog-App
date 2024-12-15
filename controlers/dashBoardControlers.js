@@ -1,3 +1,3 @@
 exports.dashboardGetControler = (req, res, next) => {
-  res.render("../views/pages/dashboard");
+  res.render("../views/pages/dashboard", {message: {}});
 };

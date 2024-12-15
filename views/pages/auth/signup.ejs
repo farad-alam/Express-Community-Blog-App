@@ -22,13 +22,8 @@
           class="input input-bordered w-full"
           required
         />
-        <% if (errors) { %>
-            <% errors.forEach(error => { %>
-              <% if (error.path === "username") { %>
-                    <p class="text-red-500 text-sm mt-1"><%= error.msg %></p>
-              <% } %>
-            <% }) %>
-        <% } %>
+        <%- include('../../partials/inputError', {"errors": errors, type:
+        'username'}) %>
       </div>
       <div class="form-control">
         <label class="label" for="email">
@@ -43,7 +38,8 @@
           class="input input-bordered w-full"
           required
         />
-        <%- include('../../partials/inputError', {"errors": errors, type: 'email'}) %>
+        <%- include('../../partials/inputError', {"errors": errors, type:
+        'email'}) %>
       </div>
       <div class="form-control">
         <label class="label" for="password">
@@ -57,7 +53,8 @@
           class="input input-bordered w-full"
           required
         />
-        <%- include('../../partials/inputError', {"errors": errors, type: 'password'}) %>
+        <%- include('../../partials/inputError', {"errors": errors, type:
+        'password'}) %>
       </div>
       <div class="form-control">
         <label class="label" for="confirm-password">
@@ -71,7 +68,8 @@
           class="input input-bordered w-full"
           required
         />
-        <%- include('../../partials/inputError', {"errors": errors, type: 'confirmpassword'}) %>
+        <%- include('../../partials/inputError', {"errors": errors, type:
+        'confirmpassword'}) %>
       </div>
       <div class="form-control mt-6">
         <button type="submit" class="btn btn-primary w-full">Sign Up</button>
