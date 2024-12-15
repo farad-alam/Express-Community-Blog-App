@@ -5,6 +5,7 @@ const dashBoardRoute = require("./routes/dashBoardRoute");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const flash = require("connect-flash");
 
 
 const uri = `mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_USER_PASS}@blogcluster.tzdrh.mongodb.net/blogDB?retryWrites=true&w=majority&appName=BlogCluster`;
@@ -41,6 +42,22 @@ app.use("*", (req, res, next) => {
   res.locals.user = req.session.user || null;
   next();
 });
+
+app.use(flash());
+
+// Pass flash messages to all views
+app.use((req, res, next) => {
+  // Collect all types of flash messages
+  const types = ["success", "error", "info", "warning"];
+  res.locals.messages = types
+    .map((type) => {
+      return req.flash(type).map((msg) => ({ type, msg }));
+    })
+    .flat(); // Flatten to a single array
+
+  next();
+});
+
 
 
 app.use(express.json());

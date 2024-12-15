@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const flash = require("connect-flash");
 const { validationResult } = require("express-validator");
 const {msg} = require("../utils/utils");
 
@@ -36,13 +37,36 @@ exports.signUpPostControler = async (req, res, next) => {
     const savedUser = await newUser.save();
     console.log(savedUser);
 
-    console.log("new user created successfully!!!");
-    res.redirect("/dashboard");
+    // store user data to the session
+    req.session.isLoggedIn = true;
+    req.session.user = {
+      id: savedUser._id,
+      username: savedUser.username,
+      email: savedUser.email,
+    };
+
+    //save the session
+    req.session.save((err) => {
+      if (err) {
+        console.log(err);
+        req.flash("error", "Failed  to save the session");
+        return res.render("pages/auth/auth");
+      }
+      req.flash("success", "new user created successfully!!!");
+      return res.redirect("/");
+    });
+
+    
+    // req.flash("success", "new user created successfully!!!");
+    // res.redirect("/dashboard");
+
+    
   } catch (error) {
     // console.log(error)
     if (error.code === 11000) {
       console.log(error.errmsg);
-      console.log("EMail or Username already exist");
+      req.flash("warning", "EMail or Username already exist");
+      return res.redirect("/dashboard");
     }
     res.json({ error: "Condition doesn't match for creating a new user" });
   }
@@ -101,18 +125,21 @@ exports.logInPostControler = async (req, res, next) => {
     req.session.save((err)=>{
       if (err) {
         console.log(err)
-        return res.render("pages/auth/login", {
-          message: msg("Can not save you session!!!", "error"),
-        });
+        req.flash("error", "Failed  to save the session");
+        return res.render("pages/auth/login");
       }
+      req.flash("success", "Loggedin Successfull")
       return res.redirect("/");
     })
+
+
   } catch (error) {
     console.log(error);
   }
 };
 
 exports.logOutControler = (req, res, next) => {
+  req.flash("success", "Logout successfull!!!");
   req.session.destroy((err) => {
     if (err) {
       console.error(err);
