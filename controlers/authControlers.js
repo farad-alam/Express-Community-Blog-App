@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const {msg} = require("../utils/utils");
 
+
+
 exports.signUpGetControler = async (req, res, next) => {
   return res.render("pages/auth/signup", {
     errors: [],
@@ -92,7 +94,7 @@ exports.logInPostControler = async (req, res, next) => {
     // store user data to the session
     req.session.isLoggedIn = true
     console.log(user)
-    req.session.user = {id:user._id, user :user.username, email:user.email}
+    req.session.user = {id:user._id, username :user.username, email:user.email}
 
 
     //save the session

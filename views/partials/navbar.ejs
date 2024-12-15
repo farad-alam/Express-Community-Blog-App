@@ -7,12 +7,8 @@
     <div class="hidden md:flex space-x-4 items-center">
       <% if (isLoggedIn) { %>
       <a href="/auth/logout" class="btn btn-error text-white">Logout</a>
-      <% } else { %>
-      <a href="/auth/login" class="btn btn-ghost">Login</a>
-      <a href="/auth/signup" class="btn btn-outline btn-primary">Signup</a>
-      <% } %>
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost">User Options</label>
+        <label tabindex="0" class="btn btn-ghost"><%= user.username %></label>
         <ul
           tabindex="0"
           class="dropdown-content menu p-2 shadow bg-white rounded-box w-52"
@@ -22,6 +18,10 @@
           <li><a href="#">Help</a></li>
         </ul>
       </div>
+      <% } else { %>
+      <a href="/auth/login" class="btn btn-ghost">Login</a>
+      <a href="/auth/signup" class="btn btn-outline btn-primary">Signup</a>
+      <% } %>
     </div>
 
     <!-- Hamburger Icon -->
@@ -49,15 +49,15 @@
   <div id="mobile-menu" class="hidden md:hidden bg-gray-50 shadow-md">
     <% if (isLoggedIn) { %>
     <a href="auth//logout" class="block py-2 px-4 text-red-600">Logout</a>
-    <% } else { %>
-    <a href="/auth/login" class="block py-2 px-4 text-primary">Login</a>
-    <a href="/auth/signup" class="block py-2 px-4 text-primary">Signup</a>
-    <% } %>
-
     <div class="border-t mt-2">
+      <label tabindex="0" class="btn btn-ghost"><%= user.username %></label>
       <a href="#" class="block py-2 px-4">Profile</a>
       <a href="#" class="block py-2 px-4">Settings</a>
       <a href="#" class="block py-2 px-4">Help</a>
     </div>
+    <% } else { %>
+    <a href="/auth/login" class="block py-2 px-4 text-primary">Login</a>
+    <a href="/auth/signup" class="block py-2 px-4 text-primary">Signup</a>
+    <% } %>
   </div>
 </nav>

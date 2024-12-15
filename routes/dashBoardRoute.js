@@ -3,6 +3,6 @@ const { isAuthenticated } = require("../middlewares/auth");
 
 const { dashboardGetControler } = require("../controlers/dashBoardControlers");
 
-router.get("/", dashboardGetControler);
+router.get("/", isAuthenticated, dashboardGetControler);
 
 module.exports = router;

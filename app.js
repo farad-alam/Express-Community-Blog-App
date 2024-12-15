@@ -38,6 +38,7 @@ app.use(
 // Middleware to set `isLoggedIn` for all routes
 app.use("*", (req, res, next) => {
   res.locals.isLoggedIn = req.session.isLoggedIn || false;
+  res.locals.user = req.session.user || null;
   next();
 });
 
