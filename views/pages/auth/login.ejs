@@ -5,12 +5,12 @@
 <div class="bg-gray-100 flex justify-center items-center min-h-screen">
   <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
     <h2 class="text-2xl font-bold text-center text-gray-800">
-      Create an Account
+      LogIn to Your Account
     </h2>
     <p class="text-sm text-center text-gray-600 mt-2 mb-6">
-      Sign up to get started
+      Login & Explore
     </p>
-    <form method="POST" action="/auth/signup" class="space-y-4">
+    <form method="POST" action="/auth/login" class="space-y-4">
       
       <div class="form-control">
         <label class="label" for="email">
@@ -34,19 +34,6 @@
           name="password"
           id="password"
           placeholder="Enter your password"
-          class="input input-bordered w-full"
-          required
-        />
-      </div>
-      <div class="form-control">
-        <label class="label" for="confirm-password">
-          <span class="label-text font-medium">Confirm Password</span>
-        </label>
-        <input
-          type="password"
-          name="confirmpassword"
-          id="confirmpassword"
-          placeholder="Confirm your password"
           class="input input-bordered w-full"
           required
         />
