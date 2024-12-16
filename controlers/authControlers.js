@@ -53,7 +53,7 @@ exports.signUpPostControler = async (req, res, next) => {
         return res.render("pages/auth/auth");
       }
       req.flash("success", "new user created successfully!!!");
-      return res.redirect("/");
+      return res.redirect("/dashboard");
     });
 
     
@@ -66,7 +66,7 @@ exports.signUpPostControler = async (req, res, next) => {
     if (error.code === 11000) {
       console.log(error.errmsg);
       req.flash("warning", "EMail or Username already exist");
-      return res.redirect("/dashboard");
+      return res.redirect("/auth/signup");
     }
     res.json({ error: "Condition doesn't match for creating a new user" });
   }
@@ -129,7 +129,7 @@ exports.logInPostControler = async (req, res, next) => {
         return res.render("pages/auth/login");
       }
       req.flash("success", "Loggedin Successfull")
-      return res.redirect("/");
+      return res.redirect("/dashboard");
     })
 
 

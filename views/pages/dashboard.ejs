@@ -5,85 +5,70 @@
 
 <main>
 
-  <div class="flex h-screen">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-md flex flex-col">
-      <div class="p-4 border-b">
-        <h1 class="text-2xl font-bold text-primary">Dashboard</h1>
-      </div>
-      <nav class="flex-1 p-4 space-y-4">
-        <a href="#" class="flex items-center p-2 text-gray-800 hover:bg-gray-100 rounded-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mr-2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18M5 6h14M5 18h14" />
-          </svg>
-          Overview
-        </a>
-        <a href="#" class="flex items-center p-2 text-gray-800 hover:bg-gray-100 rounded-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mr-2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m-6-8h6m-6-4h6M3 10h18M3 14h18" />
-          </svg>
-          Reports
-        </a>
-        <a href="#" class="flex items-center p-2 text-gray-800 hover:bg-gray-100 rounded-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mr-2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m6 2v-2m-6 0v2m0-6v2m6-2v2m-6 0v-2m-6-4h6M9 21v2" />
-          </svg>
-          Settings
-        </a>
-      </nav>
-    </aside>
+<div class="bg-gradient-to-r from-blue-50 via-white to-blue-50 font-sans">
+    <div class="max-w-7xl mx-auto p-4">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-blue-400 to-purple-500 text-white shadow p-6 rounded-lg mb-6">
 
-    <!-- Main Content -->
-    <main class="flex-1 bg-gray-50 p-6">
-      <!-- Header -->
-      <header class="mb-6">
-        <h2 class="text-3xl font-bold text-gray-800">Welcome to Your Dashboard</h2>
-        <p class="text-gray-600">Here is an overview of your recent activity</p>
-      </header>
+            <div class="flex items-center gap-4">
 
-      <!-- Stats Cards -->
-      <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white p-4 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-gray-800">Total Users</h3>
-          <p class="text-4xl font-bold text-primary mt-2">1,234</p>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-gray-800">Revenue</h3>
-          <p class="text-4xl font-bold text-green-500 mt-2">$12,345</p>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-gray-800">New Signups</h3>
-          <p class="text-4xl font-bold text-blue-500 mt-2">567</p>
-        </div>
-      </section>
+                <img class="w-20 h-20 rounded-full border-4 border-white" src="https://via.placeholder.com/150" alt="User Avatar">
+                <div>
+                    
+                    <h1 class="text-2xl font-bold">John Doe</h1>
+                    <p class="text-blue-100">Software Developer</p>
+                    <p class="text-sm text-blue-200">"Building the future, one line of code at a time."</p>
+                    <div class="flex gap-4 mt-2">
+                        <a href="#" class="text-white hover:text-blue-100">Twitter</a>
+                        <a href="#" class="text-white hover:text-blue-100">LinkedIn</a>
+                        <a href="#" class="text-white hover:text-blue-100">GitHub</a>
+                        <a href="#" class="text-white hover:text-blue-100">Portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-      <!-- Recent Activity Table -->
-      <section class="mt-8 bg-white p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-bold text-gray-800 mb-4">Recent Activity</h3>
-        <table class="table-auto w-full border-collapse border border-gray-200">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-200 p-2 text-left">Name</th>
-              <th class="border border-gray-200 p-2 text-left">Activity</th>
-              <th class="border border-gray-200 p-2 text-left">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-200 p-2">John Doe</td>
-              <td class="border border-gray-200 p-2">Logged in</td>
-              <td class="border border-gray-200 p-2">2024-12-15</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-200 p-2">Jane Smith</td>
-              <td class="border border-gray-200 p-2">Uploaded a file</td>
-              <td class="border border-gray-200 p-2">2024-12-15</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </main>
-  </div>
+        <!-- Main Content -->
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Published Posts -->
+            <section class="bg-white shadow p-6 rounded-lg border-t-4 border-blue-400">
+                <h2 class="text-xl font-bold mb-4 text-blue-600">Published Posts</h2>
+                <ul class="space-y-3">
+                    <li class="p-3 bg-blue-50 rounded-lg shadow-sm hover:bg-blue-100">How to use Tailwind CSS effectively</li>
+                    <li class="p-3 bg-blue-50 rounded-lg shadow-sm hover:bg-blue-100">Building responsive layouts with Flexbox</li>
+                    <li class="p-3 bg-blue-50 rounded-lg shadow-sm hover:bg-blue-100">Understanding JavaScript closures</li>
+                </ul>
+            </section>
+
+            <!-- Drafted Posts -->
+            <section class="bg-white shadow p-6 rounded-lg border-t-4 border-purple-400">
+                <h2 class="text-xl font-bold mb-4 text-purple-600">Drafted Posts</h2>
+                <ul class="space-y-3">
+                    <li class="p-3 bg-purple-50 rounded-lg shadow-sm hover:bg-purple-100">Introduction to GraphQL</li>
+                    <li class="p-3 bg-purple-50 rounded-lg shadow-sm hover:bg-purple-100">The basics of React Hooks</li>
+                </ul>
+            </section>
+
+            <!-- Saved and Liked Posts -->
+            <section class="bg-white shadow p-6 rounded-lg border-t-4 border-green-400">
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold mb-4 text-green-600">Saved Posts</h2>
+                    <ul class="space-y-3">
+                        <li class="p-3 bg-green-50 rounded-lg shadow-sm hover:bg-green-100">Advanced CSS techniques</li>
+                        <li class="p-3 bg-green-50 rounded-lg shadow-sm hover:bg-green-100">Improving web performance</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold mb-4 text-pink-600">Liked Posts</h2>
+                    <ul class="space-y-3">
+                        <li class="p-3 bg-pink-50 rounded-lg shadow-sm hover:bg-pink-100">Building accessible web applications</li>
+                        <li class="p-3 bg-pink-50 rounded-lg shadow-sm hover:bg-pink-100">Why TypeScript is the future of JavaScript</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
 
 
 </main>

@@ -2,6 +2,7 @@ require("dotenv").config()
 const express = require("express")
 const authRoute = require('./routes/authRoute');
 const dashBoardRoute = require("./routes/dashBoardRoute");
+const profileRoute = require("./routes/profileRoute");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -9,6 +10,8 @@ const flash = require("connect-flash");
 
 
 const uri = `mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_USER_PASS}@blogcluster.tzdrh.mongodb.net/blogDB?retryWrites=true&w=majority&appName=BlogCluster`;
+
+
 // Database connection setup
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -21,9 +24,10 @@ mongoose
 
 const app = express()
 
+// SESSION MIDDLEWARE SETUP
 app.use(
   session({
-    secret: process.env.SESSION_SECRATE_KEY, // Replace with your secret key
+    secret: process.env.SESSION_SECRATE_KEY, 
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
@@ -36,6 +40,7 @@ app.use(
   })
 );
 
+
 // Middleware to set `isLoggedIn` for all routes
 app.use("*", (req, res, next) => {
   res.locals.isLoggedIn = req.session.isLoggedIn || false;
@@ -47,6 +52,7 @@ app.use(flash());
 
 // Pass flash messages to all views
 app.use((req, res, next) => {
+
   // Collect all types of flash messages
   const types = ["success", "error", "info", "warning"];
   res.locals.messages = types
@@ -69,6 +75,7 @@ app.set("views", "views")
 
 app.use("/auth", authRoute);
 app.use("/dashboard", dashBoardRoute);
+app.use("/profile", profileRoute);
 
 
 

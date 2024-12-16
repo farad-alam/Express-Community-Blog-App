@@ -13,9 +13,9 @@
           tabindex="0"
           class="dropdown-content menu p-2 shadow bg-white rounded-box w-52"
         >
-          <li><a href="#">Profile</a></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/profile">Profile</a></li>
           <li><a href="#">Settings</a></li>
-          <li><a href="#">Help</a></li>
         </ul>
       </div>
       <% } else { %>
@@ -51,9 +51,9 @@
     <a href="auth//logout" class="block py-2 px-4 text-red-600">Logout</a>
     <div class="border-t mt-2">
       <label tabindex="0" class="btn btn-ghost"><%= user.username %></label>
-      <a href="#" class="block py-2 px-4">Profile</a>
+      <a href="/dashboard" class="block py-2 px-4">Dashboard</a>
+      <a href="/profile" class="block py-2 px-4">Profile</a>
       <a href="#" class="block py-2 px-4">Settings</a>
-      <a href="#" class="block py-2 px-4">Help</a>
     </div>
     <% } else { %>
     <a href="/auth/login" class="block py-2 px-4 text-primary">Login</a>
