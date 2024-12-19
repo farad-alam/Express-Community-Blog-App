@@ -13,29 +13,29 @@
 
             <!-- User Details -->
             <div class="flex items-center gap-6">
-                <img class="w-24 h-24 rounded-full border-4 border-green-400" src="https://via.placeholder.com/150" alt="User Avatar">
+                <img class="w-24 h-24 rounded-full border-4 border-green-400" src="<%= userProfile.profilePic %>" alt="User Avatar">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-800">John Doe</h1>
-                    <p class="text-green-600 text-xl">Software Developer</p>
-                    <p class="text-gray-500 mt-2">"Passionate about creating impactful software that solves real-world problems."</p>
+                    <h1 class="text-3xl font-bold text-gray-800"><%= userProfile.name %></h1>
+                    <p class="text-green-600 text-xl"><%= userProfile.title %></p>
+                    <p class="text-gray-500 mt-2"><%= userProfile.bio %></p>
                 </div>
             </div>
 
             <!-- Social Links -->
             <div class="flex gap-4 mt-6">
-                <a href="#" class="flex items-center gap-2 text-blue-500 hover:underline">
+                <a href="<%= userProfile.links["twitter"] %>" class="flex items-center gap-2 text-blue-500 hover:underline">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M22.46 6c-.77.35-1.58.59-2.46.7a4.15 4.15 0 0 0 1.83-2.29 8.3 8.3 0 0 1-2.63 1A4.14 4.14 0 0 0 11.74 9a11.72 11.72 0 0 1-8.51-4.31 4.14 4.14 0 0 0 1.28 5.52 4.15 4.15 0 0 1-1.87-.52v.05a4.14 4.14 0 0 0 3.32 4.06 4.15 4.15 0 0 1-1.86.07 4.14 4.14 0 0 0 3.87 2.88A8.31 8.31 0 0 1 2 19.52a11.7 11.7 0 0 0 6.29 1.84A11.72 11.72 0 0 0 20.45 9.6c0-.18 0-.36-.01-.54a8.37 8.37 0 0 0 2.02-2.13z" />
                     </svg>
                     Twitter
                 </a>
-                <a href="#" class="flex items-center gap-2 text-blue-600 hover:underline">
+                <a href="<%= userProfile.links["linkedin"] %>" class="flex items-center gap-2 text-blue-600 hover:underline">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M21.68 2H2.32A2.32 2.32 0 0 0 0 4.32v15.36A2.32 2.32 0 0 0 2.32 22h10.56v-7.6h-2.56V11h2.56V8.84a4 4 0 0 1 4.28-4.28 22.2 22.2 0 0 1 2.56.13v2.84h-1.77a1.65 1.65 0 0 0-1.88 1.88V11h3.12l-.51 3.4h-2.61V22h5.12A2.32 2.32 0 0 0 24 19.68V4.32A2.32 2.32 0 0 0 21.68 2z" />
                     </svg>
                     LinkedIn
                 </a>
-                <a href="#" class="flex items-center gap-2 text-gray-800 hover:underline">
+                <a href="<%= userProfile.links["github"] %>" class="flex items-center gap-2 text-gray-800 hover:underline">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 0 0 8.29 11.43c.61.11.83-.26.83-.57v-2.21c-3.37.73-4.08-1.62-4.08-1.62a3.22 3.22 0 0 0-1.34-1.75c-1.09-.74.08-.73.08-.73a2.55 2.55 0 0 1 1.86 1.25 2.59 2.59 0 0 0 3.51 1 2.61 2.61 0 0 1 .77-1.62c-2.69-.3-5.51-1.34-5.51-5.97a4.68 4.68 0 0 1 1.25-3.25 4.36 4.36 0 0 1 .12-3.21s1-.32 3.28 1.24a11.4 11.4 0 0 1 6 0c2.28-1.56 3.28-1.24 3.28-1.24a4.36 4.36 0 0 1 .12 3.21 4.68 4.68 0 0 1 1.25 3.25c0 4.63-2.83 5.67-5.52 5.97a2.94 2.94 0 0 1 .83 2.29v3.41c0 .31.22.69.84.57A12 12 0 0 0 24 12C24 5.37 18.63 0 12 0z" />
                     </svg>

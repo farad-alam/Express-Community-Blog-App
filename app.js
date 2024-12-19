@@ -68,6 +68,8 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
 
 // View Engine setup
 app.set("view engine", "ejs")
@@ -81,7 +83,7 @@ app.use("/profile", profileRoute);
 
 
 app.get('/', (req, res)=>{
-    res.render("pages/dashboard")
+    res.render("pages/home")
 })
 
 const PORT = process.env.PORT || 3000

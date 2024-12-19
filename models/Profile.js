@@ -28,10 +28,10 @@ const profileSchema = Schema(
     },
     profilePic: {
       type: String,
+      default : "uploads/default-profile.jpg",
     },
     links: {
       website: String,
-      facebook: String,
       twitter: String,
       linkedin: String,
       github: String,
