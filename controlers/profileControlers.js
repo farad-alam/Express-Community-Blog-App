@@ -1,4 +1,5 @@
 const Profile = require('../models/Profile');
+const User = require("../models/User");
 const flash = require("connect-flash");
 const {validationResult} = require('express-validator');
 
@@ -15,7 +16,12 @@ exports.profileGetControlers = async (req, res, next) => {
 
 }
 
-exports.createProfileGetControlers = (req, res, next) => {
+exports.createProfileGetControlers = async(req, res, next) => {
+    const userProfile = await Profile.findOne({ user: req.session.user.id });
+  if (userProfile) {
+    req.flash("info", "You have alrady created profile")
+    return res.redirect("/profile")
+  }
   res.render("pages/profile/createProfile", {
     errors: [],
     oldInput: {},
@@ -23,8 +29,12 @@ exports.createProfileGetControlers = (req, res, next) => {
 };
 
 exports.createProfilePostControlers = async(req, res, next) => {
+  const userProfile = await Profile.findOne({ user: req.session.user.id });
+  if (userProfile) {
+    req.flash("info", "You have alrady created profile")
+    return res.redirect("/profile")
+  }
   const {name,title, bio, website, twitter, linkedin, github} = req.body
-
   console.log(req.body)
   const error = validationResult(req)
   console.log(error)
@@ -49,6 +59,14 @@ exports.createProfilePostControlers = async(req, res, next) => {
 
     const savedProfile = await newProfile.save()
     console.log(savedProfile)
+
+    // Update User Model
+    await User.findByIdAndUpdate(
+      req.session.user.id,
+      { $set: { profile: savedProfile._id } },
+      { new: true }
+    );
+
     req.flash("success", "Profile Created Successfully!!!")
     return res.redirect("/profile")
     
