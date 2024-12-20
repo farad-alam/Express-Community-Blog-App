@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
-
+const cors = require("cors");
 
 const uri = `mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_USER_PASS}@blogcluster.tzdrh.mongodb.net/blogDB?retryWrites=true&w=majority&appName=BlogCluster`;
 
@@ -70,6 +70,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+app.use(cors());
+
 
 // View Engine setup
 app.set("view engine", "ejs")
@@ -81,10 +83,12 @@ app.use("/profile", profileRoute);
 
 
 
+const uploads = require('./middlewares/uploadMiddleware');
 
-app.get('/', (req, res)=>{
-    res.render("pages/home")
-})
+app.get("/", uploads.single("profilePic"), (req, res) => {
+  
+  res.render("pages/home");
+});
 
 const PORT = process.env.PORT || 3000
 

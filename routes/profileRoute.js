@@ -1,7 +1,9 @@
 const route = require('express').Router();
 
+
 // impor middlewares
 const {isAuthenticated} = require('../middlewares/authMiddlewares');
+const uploads  = require("../middlewares/uploadMiddleware");
 const {
     isAvilableUserProfile
 } = require("../middlewares/profileMiddlewares");
@@ -13,12 +15,13 @@ const { profileValidator } = require("../validators/profileValidator");
 
 // import profile controlers
 const {
-    profileGetControlers,
-    createProfileGetControlers,
-    createProfilePostControlers,
-    editProfileGetControlers,
-    editProfilePostControlers
-} = require('../controlers/profileControlers');
+  profileGetControlers,
+  createProfileGetControlers,
+  createProfilePostControlers,
+  editProfileGetControlers,
+  editProfilePostControlers,
+  profilePicPostControlers,
+} = require("../controlers/profileControlers");
 
 
 route.get("/", isAuthenticated, isAvilableUserProfile, profileGetControlers)
@@ -41,5 +44,13 @@ route.post(
   editProfilePostControlers
 );
 
+route.post(
+  "/upload-profile-pic",
+  isAuthenticated,
+  profileValidator,
+  uploads.single("profilePic"),
+  
+  profilePicPostControlers
+);
 
 module.exports = route;

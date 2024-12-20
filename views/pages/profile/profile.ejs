@@ -3,7 +3,7 @@
 <div class="bg-gradient-to-r from-green-50 via-white to-green-50 font-sans">
     <div class="max-w-4xl mx-auto p-6">
         <!-- Profile Card -->
-        <div class="bg-white shadow-lg rounded-lg p-6 relative">
+        <div class="bg-white shadow-lg rounded-lg p-6 relative ">
             <!-- Edit Icon -->
             <a href="/edit-profile" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -12,14 +12,52 @@
             </a>
 
             <!-- User Details -->
-            <div class="flex items-center gap-6">
+            <!-- <div class="flex items-center gap-6">
                 <img class="w-24 h-24 rounded-full border-4 border-green-400" src="<%= userProfile.profilePic %>" alt="User Avatar">
                 <div>
                     <h1 class="text-3xl font-bold text-gray-800"><%= userProfile.name %></h1>
                     <p class="text-green-600 text-xl"><%= userProfile.title %></p>
                     <p class="text-gray-500 mt-2"><%= userProfile.bio %></p>
                 </div>
-            </div>
+            </div> -->
+
+
+            <div class="flex items-center gap-6 ">
+    <div class="relative">
+        <img 
+            class="w-56 h-24 rounded-full border-4 border-green-400 object-cover" 
+            src="<%= userProfile.profilePic %>" 
+            alt="User Avatar" 
+            id="profilePicPreview"
+        >
+        <!-- Edit Icon -->
+        <form enctype="multipart/form-data">
+        <label 
+            for="profilePic" 
+            class="absolute top-0 right-0 bg-green-500 text-white rounded-full p-1 cursor-pointer hover:bg-green-600"
+            title="Change Image"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-2.036A2.5 2.5 0 1115 10.5a2.5 2.5 0 01-1.768-4.268z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.5 3.75L21 8.25m-9 9.75H7.5A2.25 2.25 0 015.25 15.75V7.5A2.25 2.25 0 017.5 5.25H15.75A2.25 2.25 0 0118 7.5v4.5" />
+            </svg>
+        </label>
+        <!-- Hidden File Input -->
+        <input 
+            type="file" 
+            id="profilePic" 
+            accept="image/*" 
+            class="hidden" 
+            
+        >
+        </form>
+    </div>
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800"><%= userProfile.name %></h1>
+        <p class="text-green-600 text-xl"><%= userProfile.title %></p>
+        <p class="text-gray-500 mt-2"><%= userProfile.bio %></p>
+    </div>
+</div>
 
             <!-- Social Links -->
             <div class="flex gap-4 mt-6">
@@ -46,4 +84,26 @@
     </div>
 </div>
 
-<%- include("../../partials/footer") %>
+
+
+<!-- Open the modal using ID.showModal() method -->
+<button class="btn" onclick="croppie_modal.showModal()">open modal</button>
+<dialog id="croppie_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <div class="modal-action">
+      <div id="cropped-image"></div>
+      <!-- <form method="dialog">
+       
+        <button class="btn">Close</button> -->
+      <!-- </form> -->
+    </div>
+    <div class="actions">
+      <button class="btn btn-warning" id="cancel-cropping">Close</button>
+      <button class="btn btn-accent" id="upload-image">Upload</button>
+    </div>
+  </div>
+</dialog>
+
+<%- include("../../partials/footer", { pageSpecificScript:
+'/script/profilePicUpload.js' }) %>
