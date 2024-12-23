@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { isAuthenticated } = require("../middlewares/authMiddlewares");
 const { isAvilableUserProfile } = require("../middlewares/profileMiddlewares");
+const  uploads  = require("../middlewares/uploadMiddleware");
 
 const {
   displayBlogPostControler,
@@ -9,6 +10,7 @@ const {
   updateBlogGetControler,
   updateBlogPOSTControler,
   deleteBlogGetControler,
+  blogPostImageUploadControler,
 } = require("../controlers/blogPostControlers");
 
 
@@ -46,11 +48,19 @@ router.post(
   updateBlogPOSTControler
 );
 
-router.post(
+router.delete(
   "/delete/:blogID",
   isAuthenticated,
   isAvilableUserProfile,
   deleteBlogGetControler
+);
+
+router.post(
+  "/blog-post-image-upload",
+  isAuthenticated,
+  isAvilableUserProfile,
+  uploads.single("blog-post-image"),
+  blogPostImageUploadControler
 );
 
 module.exports = router;
