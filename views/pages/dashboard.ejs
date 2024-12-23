@@ -34,9 +34,9 @@
             <section class="bg-white shadow p-6 rounded-lg border-t-4 border-blue-400">
                 <h2 class="text-xl font-bold mb-4 text-blue-600">Published Posts</h2>
                 <ul class="space-y-3">
-                    <li class="p-3 bg-blue-50 rounded-lg shadow-sm hover:bg-blue-100">How to use Tailwind CSS effectively</li>
-                    <li class="p-3 bg-blue-50 rounded-lg shadow-sm hover:bg-blue-100">Building responsive layouts with Flexbox</li>
-                    <li class="p-3 bg-blue-50 rounded-lg shadow-sm hover:bg-blue-100">Understanding JavaScript closures</li>
+                    <% posts.forEach(post => { %>
+                     <li class="p-3 bg-blue-50 rounded-lg shadow-sm hover:bg-blue-100"><a href="/blog/blog-post/<%= post._id %>"><%= post.title %></a></li>
+                    <% }) %>
                 </ul>
             </section>
 

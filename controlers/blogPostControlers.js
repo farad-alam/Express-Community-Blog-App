@@ -2,8 +2,31 @@ const { validationResult } = require("express-validator");
 const Post = require("../models/Post");
 const Profile = require("../models/Profile");
 
-exports.displayBlogPostControler = (req, res, next) => {
-  res.render("pages/blog/displayBlogPost");
+exports.displayBlogPostControler = async (req, res, next) => {
+    const { blogID } = req.params;
+
+    try {
+      // check the existing post
+      let post = await Post.findOne({
+        author: req.session.user.id,
+        _id: blogID,
+      }).populate("author", "username");
+
+      if (!post) {
+        let error = new Error("404 page not found");
+        error.status(404);
+        throw error;
+      }
+      return res.render("pages/blog/displayBlogPost",{
+        post
+      });
+    } catch (error) {
+      console.log(error);
+      req.flash("error", "Failed to Fetch your Post");
+      return res.redirect("/dashboard");
+    }
+
+  
 };
 
 exports.createBlogGetControler = (req, res, next) => {
