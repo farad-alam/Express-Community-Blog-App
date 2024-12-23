@@ -1,6 +1,8 @@
 const Profile = require("../models/Profile");
 const User = require("../models/User");
 const flash = require("connect-flash");
+const fs = require('fs');
+const path = require('path');
 const { validationResult } = require("express-validator");
 
 exports.profileGetControlers = async (req, res, next) => {
@@ -84,22 +86,43 @@ exports.editProfilePostControlers = (req, res, next) => {
   res.render("pages/profile/editProfile");
 };
 
+
+
 exports.profilePicPostControlers = async (req, res, next) => {
   if (!req.file) {
     return res.status(400).json({ message: "No file uploaded." });
   }
 
   // find usseer Profile to update the profile picture
-
   const existingProfile = await Profile.findOne({ user: req.session.user.id });
 
+  // Delete the existing profile pic
+  if (
+    existingProfile.profilePic &&
+    existingProfile.profilePic != `uploads/default-profile.jpg`
+  ) {
+    console.log(existingProfile.profilePic);
+    const oldImagePath = path.join(
+      __dirname,
+      "../public",
+      existingProfile.profilePic
+    );
+    fs.unlink(oldImagePath, (err) => {
+      if (err) {
+        req.flash("warning", "Failed to delete the old Profile Pic");
+        console.log("Failed to delete the old Profile Pic", err);
+      }
+    });
+    console.log("successfully deleted the old profile pic");
+  }
+
+  // update profile pic with new One
   const updatedProfile = await Profile.findByIdAndUpdate(
     existingProfile._id,
     { $set: { profilePic: `/uploads/${req.file.filename}` } },
     { new: true }
   );
   
-
   res.status(200).json({
     message: "File uploaded successfully!",
     filePath: `/uploads/${req.file.filename}`,

@@ -3,6 +3,7 @@ const express = require("express")
 const authRoute = require('./routes/authRoute');
 const dashBoardRoute = require("./routes/dashBoardRoute");
 const profileRoute = require("./routes/profileRoute");
+const blogPostRoute = require("./routes/blogPostRoute");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -77,9 +78,11 @@ app.use(cors());
 app.set("view engine", "ejs")
 app.set("views", "views")
 
+// router register
 app.use("/auth", authRoute);
 app.use("/dashboard", dashBoardRoute);
 app.use("/profile", profileRoute);
+app.use("/blog", blogPostRoute);
 
 
 
