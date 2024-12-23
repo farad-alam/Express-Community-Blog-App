@@ -3,6 +3,8 @@ const { isAuthenticated } = require("../middlewares/authMiddlewares");
 const { isAvilableUserProfile } = require("../middlewares/profileMiddlewares");
 const  uploads  = require("../middlewares/uploadMiddleware");
 
+
+// Controlers
 const {
   displayBlogPostControler,
   createBlogGetControler,
@@ -12,6 +14,9 @@ const {
   deleteBlogGetControler,
   blogPostImageUploadControler,
 } = require("../controlers/blogPostControlers");
+
+//Validators
+const {blogPostValidator} = require("../validators/blogPostValidator");
 
 
 
@@ -32,6 +37,8 @@ router.post(
   "/create",
   isAuthenticated,
   isAvilableUserProfile,
+  uploads.single("post-thumbnail"),
+  blogPostValidator,
   createBlogPOSTControler
 );
 
@@ -45,6 +52,8 @@ router.post(
   "/update/:blogID",
   isAuthenticated,
   isAvilableUserProfile,
+  uploads.single("post-thumbnail"),
+  blogPostValidator,
   updateBlogPOSTControler
 );
 
